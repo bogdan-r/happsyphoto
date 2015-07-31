@@ -1,0 +1,20 @@
+<% if (parseInt(pagResult.pageCount) > 1) { %>
+<ul class="pagination">
+  <% if (parseInt(pagResult.page) == 1) { %>
+  <li class="disabled"><span><i class="fa fa-chevron-left"></i></span></li>
+  <% } else {%>
+  <li><a href="?page=<%= parseInt(pagResult.page)-1%>"><i class="fa fa-chevron-left"></i></a></li>
+  <% } %>
+  <% _.times(pagResult.pageCount, function(n){%>
+  <li class="<% if (parseInt(pagResult.page) == n+1) { %>active<% } %>">
+    <a href="?page=<%= n+1%>"><%= n+1%></a>
+  </li>
+  <%})%>
+  <% if (parseInt(pagResult.page) == pagResult.pageCount) { %>
+  <li class="disabled"><span><i class="fa fa-chevron-right"></i></span></li>
+  <% } else {%>
+  <li><a href="?page=<%= parseInt(pagResult.page)+1%>"><i class="fa fa-chevron-right"></i></a></li>
+  <% } %>
+</ul>
+<%}%>
+

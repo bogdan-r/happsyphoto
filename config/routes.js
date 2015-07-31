@@ -32,9 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  }
+  '/': 'Web/WelcomeController',
 
   /***************************************************************************
   *                                                                          *
@@ -46,4 +44,117 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  //admin login
+  '/happsyadmin': 'Web/AuthController.index',
+  'post /happsyadmin/login': 'Web/AuthController.login',
+
+  '/happsyadmin/logout': 'Web/AuthController.logout',
+
+  /*Admin part*/
+
+  '/admin': {
+    controller: 'Admin/WelcomeController',
+    action: 'index',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+
+
+  //Attachment
+  '/admin/attachment': {
+    controller: 'Admin/AttachmentController',
+    action: 'index',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  '/admin/attachment/new': {
+    controller: 'Admin/AttachmentController',
+    action: 'new',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'get /admin/attachment/edit/:id': {
+    controller: 'Admin/AttachmentController',
+    action: 'edit',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'post /admin/attachment/edit/:id': {
+    controller: 'Admin/AttachmentController',
+    action: 'update',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  '/admin/attachment/destroy': {
+    controller: 'Admin/AttachmentController',
+    action: 'destroy',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  '/admin/attachment/restore': {
+    controller: 'Admin/AttachmentController',
+    action: 'restore',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  //upload attachment
+  '/api/admin/upload_attacment': {
+    controller: 'Admin/AttachmentController',
+    action: 'create',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+
+
+  //Categories
+  'get /admin/category': {
+    controller: 'Admin/CategoryController',
+    action: 'index',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'post /admin/category': {
+    controller: 'Admin/CategoryController',
+    action: 'create',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  '/admin/category/new': {
+    controller: 'Admin/CategoryController',
+    action: 'new',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'get /admin/category/:id': {
+    controller: 'Admin/CategoryController',
+    action: 'edit',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'put /admin/category/:id': {
+    controller: 'Admin/CategoryController',
+    action: 'update',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'delete /admin/category/:id': {
+    controller: 'Admin/CategoryController',
+    action: 'destroy',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  }
 };

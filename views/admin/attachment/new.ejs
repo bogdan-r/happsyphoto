@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-lg-12">
+    <ol class="breadcrumb">
+      <li><span>&nbsp;</span></li>
+    </ol>
+
+    <div class="clearfix">
+      <h1 class="pull-left">
+        <a href="/admin/attachment">Изображения</a>
+        <small>Добавить изображения</small>
+      </h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="main-box no-header clearfix">
+      <div class="main-box-body clearfix">
+
+        <div class="js-attach-dropzone">
+          <div style="margin-bottom: 20px" class="row">
+            <div class="col-lg-6">
+              <span type="button" class="btn btn-success js-add-dropzone-file">
+                <span class="fa fa-plus"></span> Добавить файлы
+              </span>
+              <button type="button" class="btn btn-primary js-load-all-files">
+                <span class="fa fa-download"></span> Загрузить
+              </button>
+              <button type="button" class="btn btn-warning js-cancel-loading">
+                <span class="fa fa-ban"></span> Отменить загрузку
+              </button>
+            </div>
+            <div class="col-lg-5">
+              <div class="progress progress-striped active js-total-progress" style="opacity: 0">
+                <div class="progress-bar" style="width: 0"></div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="table-responsive">
+            <div class="like-table">
+              <div class="like-table-thead">
+                <div class="like-table-row">
+                  <div class="like-table-th">Изображение</div>
+                  <div class="like-table-th">Название</div>
+                  <div class="like-table-th">Размер</div>
+                  <div class="like-table-th">Подпись</div>
+                  <div class="like-table-th">&nbsp;</div>
+                </div>
+              </div>
+              <div class="like-table-tbody js-preview-dropzone"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

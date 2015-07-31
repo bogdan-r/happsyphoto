@@ -26,7 +26,7 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // '*': true,
+//  '*': 'injectAuthInfo',
 
   /***************************************************************************
   *                                                                          *
@@ -34,6 +34,16 @@ module.exports.policies = {
   * and its actions                                                          *
   *                                                                          *
   ***************************************************************************/
+  'Admin/WelcomeController': {
+    '*': ['authenticated', 'injectAuthInfo']
+  },
+  'Admin/AttachmentController': {
+    '*': ['authenticated', 'injectAuthInfo']
+  },
+  'Admin/CategoryController': {
+    '*': ['authenticated', 'injectAuthInfo']
+  }
+
 	// RabbitController: {
 
 		// Apply the `false` policy as the default for all of RabbitController's actions

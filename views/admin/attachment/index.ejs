@@ -1,0 +1,95 @@
+<div class="js-attachment-page">
+  <div class="row">
+    <div class="col-lg-12">
+      <ol class="breadcrumb">
+        <li><a href="#">&nbsp;</a></li>
+      </ol>
+
+      <div class="clearfix">
+        <h1 class="pull-left">Изображения</h1>
+
+        <div class="pull-right top-page-ui">
+          <span class="js-group-settings" style="display: none;">
+            <a href="#" class="btn btn-danger js-delete-attachments" >
+              <i class="fa fa-trash-o fa-lg"></i> Удалить изображения
+            </a>
+            <a href="" class="btn btn-success js-restore-attachments">
+              <i class="fa fa-mail-reply fa-lg"></i> Восстановить изображения
+            </a>
+          </span>
+
+          <a href="/admin/attachment/new" class="btn btn-primary">
+            <i class="fa fa-plus-circle fa-lg"></i> Добавить изображения
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>&nbsp;</th>
+                <th>Изображение</th>
+                <th>Название файла</th>
+                <th>Подпись</th>
+                <th>Статус</th>
+                <th>&nbsp;</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% _.each(attachments, function(a){%>
+              <tr>
+                <td><input class="js-attachment-group" type="checkbox" name="id" value="<%= a.id%>" /></td>
+                <td><img src="<%= a.imgUrl %>" alt="" width="250"/></td>
+                <td><%= a.file%></td>
+                <td><%= a.title%></td>
+                <td>
+                <span class="label label-<% if(a.published_state == 'active') { %>success<%}else{%>danger<%}%>">
+                  <%= a.published_state%>
+                </span>
+                </td>
+                <td style="width: 15%;">
+                  <a href="/admin/attachment/edit/<%= a.id%>" class="table-link">
+                  <span class="fa-stack">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                  </span>
+                  </a>
+                  <% if(a.published_state == 'active') { %>
+                  <a href="#" class="table-link danger js-delete-attachment">
+                  <span class="fa-stack">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                  </span>
+                  </a>
+                  <%}else{%>
+                  <a href="#" class="table-link js-restore-attachment">
+                  <span class="fa-stack">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-mail-reply fa-stack-1x fa-inverse"></i>
+                  </span>
+                  </a>
+                  <%}%>
+
+
+
+                </td>
+              </tr>
+
+              <%})%>
+              </tbody>
+            </table>
+          </div>
+          <%- partial('./../../admin/shared/pagination.ejs') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

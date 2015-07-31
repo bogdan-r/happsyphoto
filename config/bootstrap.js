@@ -9,9 +9,20 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
+var fs = require('fs');
+var path = require('path');
+
 module.exports.bootstrap = function(cb) {
 
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
+  var atcSource = path.join(process.cwd(), 'attachments/uploads');
+  var atcDest = path.join(process.cwd(), '.tmp/public/uploads');
+
+  sails.on('lifted', function() {
+    //TODO криворукий хак, подумать как обойтись без таймера
+    setTimeout(function(){
+      fs.symlink(atcSource, atcDest, function(err) {});
+    },1500)
+  });
+
   cb();
 };

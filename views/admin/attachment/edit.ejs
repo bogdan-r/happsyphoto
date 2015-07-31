@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-lg-12">
+    <ol class="breadcrumb">
+      <li><span>&nbsp;</span></li>
+    </ol>
+
+    <div class="clearfix">
+      <h1 class="pull-left">
+        <a href="/admin/attachment">Изображения</a>
+        <small>Правка изображения</small>
+      </h1>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="main-box no-header clearfix">
+      <div class="main-box-body clearfix">
+        <div class="row">
+          <div class="col-lg-6">
+            <img src="<%= attachment.imgUrl %>" alt=""/>
+          </div>
+          <div class="col-lg-6">
+            <form action="/admin/attachment/edit/<%= attachment.id%>" method="post">
+              <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+              <div class="form-group">
+                <label for="attachmentTitle">Подпись</label>
+                <textarea name="title" class="form-control" id="attachmentTitle" rows="3"><%= attachment.title%></textarea>
+              </div>
+              <div class="form-group">
+                <label>Статус</label>
+                <select class="form-control" name="published_state">
+                  <option <% if(attachment.published_state == 'active'){%>selected<%}%> value="active">active</option>
+                  <option <% if(attachment.published_state == 'deleted'){%>selected<%}%> value="deleted">deleted</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-success">Сохранить</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

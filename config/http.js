@@ -9,8 +9,14 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.http.html
  */
 
-module.exports.http = {
 
+
+var helpers = require('express-helpers')();
+
+module.exports.http = {
+  locals: {
+
+  },
   /****************************************************************************
   *                                                                           *
   * Express middleware to use for every Sails request. To add custom          *
@@ -21,8 +27,10 @@ module.exports.http = {
   *                                                                           *
   ****************************************************************************/
 
-  // middleware: {
+  middleware: {
 
+    passportInit    : require('passport').initialize(),
+    passportSession : require('passport').session(),
   /***************************************************************************
   *                                                                          *
   * The order in which middleware should be run for HTTP request. (the Sails *
@@ -30,23 +38,25 @@ module.exports.http = {
   *                                                                          *
   ***************************************************************************/
 
-    // order: [
-    //   'startRequestTimer',
-    //   'cookieParser',
-    //   'session',
-    //   'myRequestLogger',
-    //   'bodyParser',
-    //   'handleBodyParserError',
-    //   'compress',
-    //   'methodOverride',
-    //   'poweredBy',
-    //   '$custom',
-    //   'router',
-    //   'www',
-    //   'favicon',
-    //   '404',
-    //   '500'
-    // ],
+    order: [
+       'startRequestTimer',
+       'cookieParser',
+       'session',
+       'passportInit',
+       'passportSession',
+       'myRequestLogger',
+       'bodyParser',
+       'handleBodyParserError',
+       'compress',
+       'methodOverride',
+       'poweredBy',
+       '$custom',
+       'router',
+       'www',
+       'favicon',
+       '404',
+       '500'
+    ]
 
   /****************************************************************************
   *                                                                           *
@@ -71,7 +81,7 @@ module.exports.http = {
 
     // bodyParser: require('skipper')
 
-  // },
+  }
 
   /***************************************************************************
   *                                                                          *
