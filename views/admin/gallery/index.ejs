@@ -1,0 +1,70 @@
+<div class="js-gallery-page gallery-page">
+  <div class="row">
+    <div class="col-lg-12">
+      <ol class="breadcrumb">
+        <li><a href="#">&nbsp;</a></li>
+      </ol>
+
+      <div class="clearfix">
+        <h1 class="pull-left">Галереи</h1>
+
+        <div class="pull-right top-page-ui">
+          <a href="/admin/gallery/new" class="btn btn-primary">
+            <i class="fa fa-plus-circle fa-lg"></i> Добавить галерею
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <div class="table-responsive">
+            <table class="table gallery-index-table">
+              <thead>
+              <tr>
+                <th>Обложка</th>
+                <th>Название</th>
+                <th>Категории</th>
+                <th>&nbsp;</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% _.each(galleries, function(g){%>
+              <tr>
+                <td class="gallery-index-table__cover"><img src="<%= g.coverImg.imgUrl %>" alt="" /></td>
+                <td><%= g.name%></td>
+                <td>
+                  <% _.each(g.categories, function(cat){%>
+                  <span class="label label-primary"><%= cat.name%></span>
+                  <%})%>
+                </td>
+                <td style="width: 15%;">
+                  <a href="/admin/gallery/<%= g.id%>" class="table-link">
+                    <span class="fa-stack">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                    </span>
+                  </a>
+
+                  <a href="/admin/gallery/<%= g.id%>" class="table-link danger js-gallery-delete">
+                    <span class="fa-stack">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                    </span>
+                  </a>
+                </td>
+              </tr>
+              <%})%>
+              </tbody>
+            </table>
+          </div>
+          <%- partial('./../../admin/shared/pagination.ejs') %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

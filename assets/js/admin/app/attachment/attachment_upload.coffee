@@ -7,6 +7,7 @@ class AttachmentUpload extends Backbone.View
   initialize: ()->
     if @$el.hasClass(@$el.selector.slice(1))
       @dropzone = new Dropzone(@$el.selector, {
+        acceptedFiles: "image/*"
         url: '/api/admin/upload_attacment'
         thumbnailWidth: 100
         thumbnailheight: 100
@@ -21,34 +22,30 @@ class AttachmentUpload extends Backbone.View
         }
       })
 
-      @dropzone.on('addedfile', (file)->
-        $(file.previewElement).find('.js-upload-file').on('click', ()=>
-          @.enqueueFile(file)
-        )
-      )
+      @dropzone.on('addedfile', @dropzoneAddedfile)
+      @dropzone.on('totaluploadprogress', @dropzoneTotaluploadprogress)
+      @dropzone.on('sending', @dropzoneSending)
+      @dropzone.on('queuecomplete', @dropzoneQueuecomplete)
+      @dropzone.on('success', @dropzoneSuccess)
 
-      @dropzone.on('totaluploadprogress', (progress)->
-        $('.js-total-progress .progress-bar').width("#{progress}%")
-      )
+  dropzoneAddedfile: (file)->
+    $(file.previewElement).find('.js-upload-file').on('click', ()=>
+      @.enqueueFile(file)
+    )
 
-      @dropzone.on('sending', (file, xhr, formData)->
-        $('.js-total-progress').css('opacity', '1')
-        $(file.previewElement).find('.js-upload-file').attr('disabled', 'disabled')
-        formData.append("title", $(file.previewElement).find('.js-dropzone-title').val());
+  dropzoneSending: (file, xhr, formData)->
+    $('.js-total-progress').css('opacity', '1')
+    $(file.previewElement).find('.js-upload-file').attr('disabled', 'disabled')
+    formData.append("title", $(file.previewElement).find('.js-dropzone-title').val());
 
-      )
+  dropzoneTotaluploadprogress: (progress)->
+    $('.js-total-progress .progress-bar').width("#{progress}%")
 
-      @dropzone.on('queuecomplete', (progress)->
-        $('.js-total-progress').css('opacity', '0')
-      )
+  dropzoneQueuecomplete: (progress)->
+    $('.js-total-progress').css('opacity', '0')
 
-      @dropzone.on('success', (file, responseText)->
-        $(file.previewElement).find('.js-dropzone-success').css('opacity', '1');
-        setTimeout(->
-          $(file.previewElement).fadeOut();
-        , 5000)
-      )
-
+  dropzoneSuccess: (file, responseText)->
+    $(file.previewElement).find('.js-dropzone-success').fadeIn();
 
   loadAllFilesHandler: (e)->
     @dropzone.enqueueFiles(@dropzone.getFilesWithStatus(Dropzone.ADDED));
@@ -56,3 +53,5 @@ class AttachmentUpload extends Backbone.View
   cancelLoading: (e)->
     @dropzone.removeAllFiles(true);
 
+  getDropzoneInstance: ->
+    @dropzone

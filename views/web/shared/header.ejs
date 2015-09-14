@@ -6,8 +6,22 @@
   <nav>
     <ul>
       <li>
-        <a href="/" class="active">ГЛАВНАЯ</a>
+        <a href="/" >ГЛАВНАЯ</a>
+      </li>
+      <li>
+        <a href="#" class="">КАТЕГОРИИ</a>
+        <ul>
+          <% _.each(Menus, function(menu){%>
+          <li><a href="/category/<%= menu.slug%>"><%= menu.name.toUpperCase()%></a></li>
+          <%})%>
+
+        </ul>
+      </li>
+      <li>
+        <a href="/">КОНТАКТЫ</a>
       </li>
     </ul>
   </nav>
+
+  <a href="#" class="mobile-navigation icon3-list2"></a>
 </header>

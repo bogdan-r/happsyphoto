@@ -51,7 +51,7 @@ module.exports = {
         }
       }, function (err, uploadedFiles) {
         if (err) {return res.badRequest()}
-        return res.ok()
+        return res.json(attachment)
       })
     })
 

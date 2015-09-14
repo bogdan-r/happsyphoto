@@ -1,0 +1,17 @@
+<div class="wrapper">
+  <div class="inner-wrapper">
+    <div class="portfolio grid">
+      <div class="projects clearfix cols-4">
+        <% _.each(category.galleries, function(gallery){%>
+        <div class="project size-regular">
+          <a href="/gallery/<%= gallery.slug%>" class="project-cont" style="background-image: url('<%= gallery.coverImg.imgUrl%>'); height: 222px">
+            <div class="overlay">
+              <span class="portfolio-name"><h5><%= gallery.name.toUpperCase()%></h5></span>
+            </div>
+          </a>
+        </div>
+        <%})%>
+      </div>
+    </div>
+  </div>
+</div>

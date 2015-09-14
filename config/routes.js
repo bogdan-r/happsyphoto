@@ -50,6 +50,31 @@ module.exports.routes = {
 
   '/happsyadmin/logout': 'Web/AuthController.logout',
 
+
+
+  /*Web part*/
+
+  //Categories
+  '/category/:slug': {
+    controller: 'Web/CategoryController',
+    action: 'show',
+    locals: {
+      hasPadding: true
+    }
+  },
+
+  //Galleries
+  '/gallery/:slug': {
+    controller: 'Web/GalleryController',
+    action: 'show',
+    locals: {
+      hasPadding: true
+    }
+  },
+
+
+
+
   /*Admin part*/
 
   '/admin': {
@@ -112,6 +137,15 @@ module.exports.routes = {
       layout: 'layouts/admin/layout'
     }
   },
+    //api attachment
+    '/api/admin/attachment': {
+      controller: 'Api/Admin/AttachmentController',
+      action: 'find'
+    },
+    'post /api/admin/favorite_attachment': {
+      controller: 'Api/Admin/FavoriteAttachmentController',
+      action: 'create'
+    },
 
 
   //Categories
@@ -143,7 +177,7 @@ module.exports.routes = {
       layout: 'layouts/admin/layout'
     }
   },
-  'put /admin/category/:id': {
+  'post /admin/category/:id': {
     controller: 'Admin/CategoryController',
     action: 'update',
     locals: {
@@ -152,6 +186,58 @@ module.exports.routes = {
   },
   'delete /admin/category/:id': {
     controller: 'Admin/CategoryController',
+    action: 'destroy',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+
+
+  //Gallery
+  'get /admin/gallery': {
+    controller: 'Admin/GalleryController',
+    action: 'index',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'post /admin/gallery': {
+    controller: 'Admin/GalleryController',
+    action: 'create',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'get /admin/gallery/new': {
+    controller: 'Admin/GalleryController',
+    action: 'new',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'get /admin/gallery/:id': {
+    controller: 'Admin/GalleryController',
+    action: 'edit',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'post /admin/gallery/:id': {
+    controller: 'Admin/GalleryController',
+    action: 'update',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'post /api/admin/delete_gallery_attachment': {
+    controller: 'Admin/GalleryController',
+    action: 'deleteAttach',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'delete /admin/gallery/:id': {
+    controller: 'Admin/GalleryController',
     action: 'destroy',
     locals: {
       layout: 'layouts/admin/layout'

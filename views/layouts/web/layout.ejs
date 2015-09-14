@@ -27,7 +27,7 @@
 
   <body>
     <%- partial('./../../web/shared/header.ejs') %>
-    <div class="main-container">
+    <div class="main-container <%if(hasPadding){%>with-padding<%}%>">
       <%- body %>
     </div>
     <%- partial('./../../web/shared/footer.ejs') %>

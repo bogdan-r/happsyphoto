@@ -1,6 +1,12 @@
 img{
   max-width: 100%;
 }
+
+
+.form-group{
+  position: relative;
+}
+
 .like-table{
   display: table;
   width: 100%;
@@ -42,4 +48,59 @@ img{
 .dropzone-success{
   transition: all 0.3s ease;
   opacity: 0;
+}
+
+
+
+
+
+
+.gallery-index-table__cover{
+  width: 350px;
+  img{
+    width: 350px;
+  }
+}
+
+
+.gallery-new{
+  .js-load-all-files,
+  .js-cancel-loading,
+  .js-upload-file{
+    display: none;
+  }
+}
+
+.gallery-edit{
+  .js-load-all-files,
+  .js-cancel-loading,
+  .js-upload-file{
+    display: none;
+  }
+}
+
+
+
+.favorite-list{
+  max-height: 70vh;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.favorite-list__item{
+  position: relative;
+  width: 23%;
+  margin-bottom: 10px;
+}
+.favorite-list__item-input{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  line-height: 1;
+  input{
+    margin-top: 0;
+  }
 }

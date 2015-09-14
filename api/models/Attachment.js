@@ -32,6 +32,19 @@ module.exports = {
 
       return obj;
     }
+  },
+
+  findByActiveState : function(options){
+    var model = this;
+    var extParams = null;
+    if(_.isObject(options) && !_.isEmpty(options)){
+      extParams = _.extend(options, {
+        published_state : 'active'
+      });
+    }else{
+      extParams = {published_state : 'active'};
+    }
+    return model.find(extParams)
   }
 };
 

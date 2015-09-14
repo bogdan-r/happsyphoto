@@ -1,0 +1,46 @@
+<div class="js-gallery-new gallery-new">
+  <div class="row">
+    <div class="col-lg-12">
+      <ol class="breadcrumb">
+        <li><span>&nbsp;</span></li>
+      </ol>
+
+      <div class="clearfix">
+        <h1 class="pull-left">
+          <a href="/admin/gallery">Галереи</a>
+          <small>Добавить галерею</small>
+        </h1>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <div class="js-gallery-attach-dropzone">
+            <%- partial('./../../admin/shared/attachment_upload.ejs') %>
+          </div>
+          <form action="/admin/gallery" method="post" class="js-gallery-new-form">
+            <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+            <input type="hidden" name="coverImg" class="js-gallery-cover-img" />
+            <div class="form-group">
+              <label for="galleryName">Название</label>
+              <input type="text" class="form-control" id="galleryName" name="name" required="required">
+            </div>
+            <div class="form-group form-group-select2">
+              <label>Категории</label>
+              <select style="width:300px" name="category" class="js-select2-multi" multiple required="required">
+                <% _.each(categories, function(c){%>
+                  <option value="<%= c.id%>"><%= c.name%></option>
+                <%})%>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success">Создать</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <div class="gallery-h normal">
+    <div class="nav">
+      <a href="#" class="prev icon4-leftarrow23"></a>
+      <a href="#" class="next icon4-chevrons"></a>
+    </div>
+    <div class="gallery clearfix">
+      <div class="container">
+        <% _.each(galleryAttachment, function(item){%>
+        <div class="img">
+          <a href="<%= item.attachment.imgUrl%>" data-rel="gallery">
+            <img src="<%= item.attachment.imgUrl%>" alt="<%= item.attachment.title%>">
+          </a>
+        </div>
+        <%})%>
+      </div>
+    </div>
+  </div>
+</div>

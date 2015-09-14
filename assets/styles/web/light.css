@@ -2319,6 +2319,10 @@ Author URL: http://themeforest.net/user/codesymbol/
             }
             .portfolio .projects .project .project-cont {
                 position: relative;
+                display: block;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
             }
             .portfolio .projects .project .project-cont:before {
                 content: "";
@@ -2380,7 +2384,8 @@ Author URL: http://themeforest.net/user/codesymbol/
             .portfolio .projects .project .overlay:hover:before {
                 opacity: 1;
             }
-            .portfolio .projects .project .overlay > a {
+            .portfolio .projects .project .overlay > a,
+            .portfolio .projects .project .overlay > .portfolio-name{
                 position: absolute;
                 width: 100%;
                 left: 0;

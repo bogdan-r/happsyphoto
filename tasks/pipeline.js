@@ -56,6 +56,8 @@ var jsAdminFilesToInject = [
   'js/admin/dependencies/backbone-min.js',
   'js/admin/dependencies/jquery.nanoscroller.min',
   'js/admin/dependencies/**/*.js',
+  'js/admin/boot.js',
+  'js/admin/models/**/*.js',
   'js/admin/app/**/*.js',
   'js/admin/**/*.js',
   'js/admin/scripts.js',

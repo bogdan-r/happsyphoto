@@ -26,7 +26,7 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-//  '*': 'injectAuthInfo',
+  '*': 'injectMenu',
 
   /***************************************************************************
   *                                                                          *
@@ -42,6 +42,14 @@ module.exports.policies = {
   },
   'Admin/CategoryController': {
     '*': ['authenticated', 'injectAuthInfo']
+  },
+  'Admin/GalleryController': {
+    '*': ['authenticated', 'injectAuthInfo']
+  },
+
+  //Api
+  'Api/Admin/AttachmentController': {
+    '*': ['authenticated']
   }
 
 	// RabbitController: {

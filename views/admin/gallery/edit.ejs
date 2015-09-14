@@ -1,0 +1,98 @@
+<div class="js-gallery-edit gallery-edit">
+  <div class="row">
+    <div class="col-lg-12">
+      <ol class="breadcrumb">
+        <li><span>&nbsp;</span></li>
+      </ol>
+
+      <div class="clearfix">
+        <h1 class="pull-left">
+          <a href="/admin/gallery">Галереи</a>
+          <small>Правка галереи</small>
+        </h1>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <form action="/admin/gallery/<%= gallery.id%>" method="post" class="js-gallery-edit-form">
+            <h3><span>Добавить фотографии</span></h3>
+            <div class="js-gallery-attach-dropzone">
+              <%- partial('./../../admin/shared/attachment_upload.ejs') %>
+            </div>
+            <h3><span>Загруженные фотографии</span></h3>
+            <div style="margin-bottom: 20px">
+              <button data-dz-remove type="button" class="btn btn-danger js-gallery-edit-delete-photos" style="display: none">
+                <span class="fa fa-trash-o"></span> Удалить фотографии
+              </button>
+            </div>
+            <div class="table-responsive">
+              <div class="like-table">
+                <div class="like-table-thead">
+                  <div class="like-table-row">
+                    <div class="like-table-th">&nbsp;</div>
+                    <div class="like-table-th">Изображение</div>
+                    <div class="like-table-th">Название</div>
+                    <div class="like-table-th">Подпись</div>
+                    <div class="like-table-th">&nbsp;</div>
+                  </div>
+                </div>
+                <div class="like-table-tbody">
+                  <% _.each(galleryAttachment, function(g, i){%>
+                  <div class="like-table-row js-gallery-edit-attachment-item" data-attachment="<%= g.attachment.id%>">
+                    <div class="like-table-cell">
+                      <input type="checkbox" name="gallery_id" value="<%= g.id%>" class="js-gallery-edit-group"/>
+                    </div>
+                    <div class="like-table-cell">
+                      <img src="<%= g.attachment.imgUrl%>" alt="" width="300"/>
+                      <label style="margin-left: 10px">
+                        <input type="radio" name="coverImg" value="<%= g.attachment.id%>" class="js-attachment-cover"/>
+                        На обложку
+                      </label>
+                    </div>
+                    <div class="like-table-cell ">
+                      <%= g.attachment.file%>
+                    </div>
+                    <div class="like-table-cell">
+                      <textarea class="form-control"  name="attachments[id_<%= g.attachment.id%>][title]"><%= g.attachment.title%></textarea>
+                    </div>
+                    <div class="like-table-cell ">
+                      <button data-dz-remove type="button" class="btn btn-danger js-gallery-edit-delete-photo">
+                        <span class="fa fa-trash-o"></span> Удалить
+                      </button>
+                      <input class="js-gallery-edit-attachment-item-order" type="hidden" name="attachments[id_<%= g.attachment.id%>][order]"/>
+                      <input type="hidden" name="attachments[id_<%= g.attachment.id%>][id]" value="<%= g.attachment.id%>"/>
+                      <input type="hidden" name="attachments[id_<%= g.attachment.id%>][galleryAttachId]" value="<%= g.id%>"/>
+                    </div>
+                  </div>
+
+                  <%})%>
+
+
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="galleryName">Название</label>
+              <input type="text" class="form-control" name="name" id="galleryName" value="<%= gallery.name%>">
+            </div>
+            <div class="form-group form-group-select2">
+              <label>Категории</label>
+              <select style="width:300px" name="category" class="js-select2-multi" multiple required="required">
+                <% _.each(categories, function(c){%>
+                <option <% if(_.some(gallery.categories, {'id': c.id})){%>selected<%}%> value="<%= c.id%>"><%= c.name%></option>
+                <%})%>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success">Редактировать</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
