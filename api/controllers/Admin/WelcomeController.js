@@ -7,7 +7,13 @@
 
 module.exports = {
 	index: function(req, res){
-    return res.view()
+    FavoriteAttachment.find().populateAll().exec(function(err, favoriteAttachment){
+      console.log(err)
+      if(err){return res.badRequest()}
+      return res.view({
+        favoriteAttachment: execToJSON(favoriteAttachment)
+      })
+    })
   }
 };
 

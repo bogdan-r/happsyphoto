@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li><span>&nbsp;</span></li>
+        </ol>
+
+        <div class="clearfix">
+            <h1 class="pull-left">
+                Обо мне
+            </h1>
+        </div>
+    </div>
+</div>
+
+
+<div class="row js-about-me-page">
+    <div class="col-lg-12">
+        <div class="main-box no-header clearfix">
+            <div class="main-box-body clearfix">
+                <form action="/admin/about_me/<%= aboutMe.id%>" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+
+                    <div class="form-group">
+                        <label for="aboutMeHeader">Шапка</label>
+                        <textarea class="form-control" id="aboutMeHeader" rows="10" name="header_body"><%= aboutMe.header_body%></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="aboutMeBody">Контент</label>
+                        <textarea class="form-control" id="aboutMeBody" rows="10" name="body"><%= aboutMe.body%></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="aboutMeFooter">Подвал</label>
+                        <textarea class="form-control" id="aboutMeFooter" rows="10" name="footer_body"><%= aboutMe.footer_body%></textarea>
+                    </div>
+
+                    <%if(aboutMe.isLoadAvatar){%>
+                    <div class="form-group">
+                        <img src="<%= aboutMe.imgUrl%>" alt=""/>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox-nice">
+                            <input type="checkbox" id="deleteAvatar" name="delete_photo" >
+                            <label for="deleteAvatar">
+                                Удалить фото
+                            </label>
+                        </div>
+                    </div>
+                    <%}else{%>
+                    <div class="form-group">
+                        <label for="aboutMeFooter">Фото</label>
+                        <input type="file" name="photo"/>
+                    </div>
+                    <%}%>
+
+                    <button type="submit" class="btn btn-success">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

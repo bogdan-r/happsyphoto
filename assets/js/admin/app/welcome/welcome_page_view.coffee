@@ -2,6 +2,7 @@ class WelcomePageView extends Backbone.View
 
   events: {
     'click .js-favorite-page-add' : 'showFavoriteModalHandler'
+    'click .js-favorite-page-delete' : 'deleteFavoriteItemHandler'
   }
 
   initialize: ()->
@@ -13,7 +14,7 @@ class WelcomePageView extends Backbone.View
     )
 
   showFavoriteModalHandler: (e)->
-    favoriteAttachments = new HappsyApp.Collections.Attachments()
+    favoriteAttachments = new HappsyApp.Collections.FavoriteAttachment()
     $('#favoriteModal').modal('show')
     favoriteAttachments.fetch({
       reset : true
@@ -22,3 +23,19 @@ class WelcomePageView extends Backbone.View
         @favoriteView.render()
       error: ()->
     })
+
+  deleteFavoriteItemHandler: (e)->
+    e.preventDefault()
+    @_deleteFavoriteItem($(e.currentTarget).attr('href'))
+
+  _deleteFavoriteItem: (url)->
+    if confirm('Вы действительно хотитие удалить фотографию')
+      $.ajax({
+        url: url
+        type: 'DELETE'
+        headers: {
+          'X-CSRF-Token': $('meta[name="token"]').attr('content')
+        }
+        success: ()->
+          document.location.reload(true)
+      })

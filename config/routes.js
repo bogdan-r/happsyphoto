@@ -52,9 +52,13 @@ module.exports.routes = {
 
 
 
-  /*Web part*/
+  /*Web part
+  * --------------------------------------------
+  * --------------------------------------------
+  * --------------------------------------------
+  * */
 
-  //Categories
+  //Categories --------------------------------------------
   '/category/:slug': {
     controller: 'Web/CategoryController',
     action: 'show',
@@ -63,7 +67,9 @@ module.exports.routes = {
     }
   },
 
-  //Galleries
+
+
+  //Galleries--------------------------------------------
   '/gallery/:slug': {
     controller: 'Web/GalleryController',
     action: 'show',
@@ -73,9 +79,40 @@ module.exports.routes = {
   },
 
 
+  //About me---------------------------------------------
+  'get /about_me': {
+    controller: 'Web/AboutMeController',
+    action: 'show'
+  },
 
 
-  /*Admin part*/
+  // Feedback -------------------------------------------
+  'get /feedback': {
+    controller: 'Web/FeedbackController',
+    action: 'index'
+  },
+    //api feedback
+  'post /api/web/feedback': {
+    controller: 'Api/Web/FeedbackController',
+    action: 'create'
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+  /*Admin part
+  * --------------------------------------------
+  * --------------------------------------------
+  * --------------------------------------------
+  * */
 
   '/admin': {
     controller: 'Admin/WelcomeController',
@@ -86,7 +123,7 @@ module.exports.routes = {
   },
 
 
-  //Attachment
+  //Attachment --------------------------------------------
   '/admin/attachment': {
     controller: 'Admin/AttachmentController',
     action: 'index',
@@ -142,13 +179,31 @@ module.exports.routes = {
       controller: 'Api/Admin/AttachmentController',
       action: 'find'
     },
+
+    'get /api/admin/favorite_attachment': {
+      controller: 'Api/Admin/FavoriteAttachmentController',
+      action: 'find'
+    },
     'post /api/admin/favorite_attachment': {
       controller: 'Api/Admin/FavoriteAttachmentController',
       action: 'create'
     },
 
+  'delete /admin/favorite_attachment/:id': {
+    controller: 'Admin/FavoriteAttachmentController',
+    action: 'destroy',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
 
-  //Categories
+
+
+
+
+
+
+  //Categories --------------------------------------------
   'get /admin/category': {
     controller: 'Admin/CategoryController',
     action: 'index',
@@ -193,7 +248,16 @@ module.exports.routes = {
   },
 
 
-  //Gallery
+
+
+
+
+
+
+
+
+
+  //Gallery --------------------------------------------
   'get /admin/gallery': {
     controller: 'Admin/GalleryController',
     action: 'index',
@@ -242,5 +306,44 @@ module.exports.routes = {
     locals: {
       layout: 'layouts/admin/layout'
     }
-  }
+  },
+
+
+
+
+
+  //Pages --------------------------------------------
+
+  //About me --------------------------------------------
+  'get /admin/about_me': {
+    controller: 'Admin/AboutMeController',
+    action: 'show',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'post /admin/about_me/:id': {
+    controller: 'Admin/AboutMeController',
+    action: 'update',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+
+
+  //Feedback ---------------------------------------
+  'get /admin/feedback': {
+    controller: 'Admin/FeedbackController',
+    action: 'index',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'get /admin/feedback/:id': {
+    controller: 'Admin/FeedbackController',
+    action: 'show',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
 };

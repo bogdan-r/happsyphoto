@@ -1308,7 +1308,7 @@ $(document).ready(function() {
 	// Contact Us
 
 		// Form Submit Validation
-			$(".contact-1 form input[type=button], .contact-2 form input[type=button]").click(function(event) {
+			/*$(".contact-1 form input[type=button], .contact-2 form input[type=button]").click(function(event) {
 				event.preventDefault();
 
 				var current_form = $(this).parent(),
@@ -1355,7 +1355,7 @@ $(document).ready(function() {
 						}
 					});
 				}
-			});
+			});*/
 		
 		// Contact 1
 

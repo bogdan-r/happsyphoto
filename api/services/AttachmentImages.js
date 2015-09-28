@@ -1,20 +1,8 @@
-var path = require('path');
+'use strict'
+var AttachmentService = require('./AttachmentService');
+class AttachmentImages extends AttachmentService{}
 
-var ATTACHMENT_URL_ASSET = process.cwd() + '/attachments/uploads/Attachment/';
-var ATTACHMENT_URL_ASSET_PUBLIC = '/uploads/Attachment/';
-
-function AttachmentImages(){}
-
-AttachmentImages.getAttachmentsUrl = function(){
-  return {
-    attachmentsUrlAsset : ATTACHMENT_URL_ASSET,
-    attachmentsUrlAssetPublic : ATTACHMENT_URL_ASSET_PUBLIC
-  }
-}
-
-AttachmentImages.getAttachmentUrlPublic = function(id, nameFile){
-  var publicPath = AttachmentImages.getAttachmentsUrl().attachmentsUrlAssetPublic;
-  return publicPath + id + '/' + nameFile
-}
-
-module.exports = AttachmentImages
+module.exports = new AttachmentImages({
+  attachmentsUrlAsset: '/attachments/uploads/Attachment/',
+  attachmentsUrlAssetPublic: '/uploads/Attachment/'
+})

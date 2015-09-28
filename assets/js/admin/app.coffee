@@ -36,4 +36,8 @@ $ ()->
       el: '.js-favorite-page'
     })
 
+  if $('.js-about-me-page').length
+    new AboutMePageView({
+      el: '.js-about-me-page'
+    })
 

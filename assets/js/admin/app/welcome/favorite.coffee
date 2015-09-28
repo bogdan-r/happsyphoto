@@ -12,7 +12,7 @@ class FavoriteView extends Backbone.View
         'X-CSRF-Token': $('meta[name="token"]').attr('content')
       }
       success: ()->
-        console.log 'success'
+        window.location.reload()
     })
 
   render: ()->
@@ -23,4 +23,11 @@ class FavoriteView extends Backbone.View
 
       @$el.append(favoriteItem.render().el)
     )
+    setTimeout(->
+      $('.js-favorite-item-img').lazyload({
+        container: $("#favoriteAttachmentList")
+        skip_invisible: false
+      })
+    , 500)
+
     @

@@ -43,10 +43,15 @@ var jsFilesToInject = [
   'js/web/dependencies/sails.io.js',
   'js/web/dependencies/jquery-1.11.3.min.js',
   'js/web/dependencies/jquery-ui/jquery-ui.min.js',
+  'js/admin/dependencies/underscore-min.js',
+  'js/admin/dependencies/backbone-min.js',
 
   // Dependencies like jQuery, or Angular are brought in here
   'js/web/dependencies/**/*.js',
-  'js/web/scripts.js'
+  'js/web/app/**/*.js',
+  'js/web/**/*.js',
+  'js/web/scripts.js',
+  'js/web/app.js'
 ];
 
 var jsAdminFilesToInject = [
@@ -55,6 +60,9 @@ var jsAdminFilesToInject = [
   'js/admin/dependencies/underscore-min.js',
   'js/admin/dependencies/backbone-min.js',
   'js/admin/dependencies/jquery.nanoscroller.min',
+  'js/admin/dependencies/ckeditor/ckeditor.js',
+  'js/admin/dependencies/ckeditor/config.js',
+  'js/admin/dependencies/ckeditor/style.js',
   'js/admin/dependencies/**/*.js',
   'js/admin/boot.js',
   'js/admin/models/**/*.js',

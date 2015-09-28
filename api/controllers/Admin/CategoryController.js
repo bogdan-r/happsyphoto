@@ -34,7 +34,6 @@ module.exports = {
   create: function(req, res){
     var params = OnlyParams(req, ['name']);
     Category.create(params).exec(function(err, category){
-      console.log(err)
       if (err) {return res.badRequest()}
       return res.redirect('./')
     })

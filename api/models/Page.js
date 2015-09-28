@@ -21,10 +21,8 @@ module.exports = {
     },
     state: {
       type: 'string',
-      enum: ['active', 'deleted']
-    },
-    name: {
-      type: 'string'
+      enum: ['active', 'deleted'],
+      defaultsTo: 'active'
     },
     description: {
       type: 'string'

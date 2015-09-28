@@ -35,16 +35,22 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
   'Admin/WelcomeController': {
-    '*': ['authenticated', 'injectAuthInfo']
+    '*': ['authenticated', 'injectAuthInfo', 'injectUnreadFeedbackCount']
   },
   'Admin/AttachmentController': {
-    '*': ['authenticated', 'injectAuthInfo']
+    '*': ['authenticated', 'injectAuthInfo', 'injectUnreadFeedbackCount']
   },
   'Admin/CategoryController': {
-    '*': ['authenticated', 'injectAuthInfo']
+    '*': ['authenticated', 'injectAuthInfo', 'injectUnreadFeedbackCount']
   },
   'Admin/GalleryController': {
-    '*': ['authenticated', 'injectAuthInfo']
+    '*': ['authenticated', 'injectAuthInfo', 'injectUnreadFeedbackCount']
+  },
+  'Admin/AboutMeController': {
+    '*': ['authenticated', 'injectAuthInfo', 'injectUnreadFeedbackCount']
+  },
+  'Admin/FeedbackController': {
+    '*': ['authenticated', 'injectAuthInfo', 'injectUnreadFeedbackCount']
   },
 
   //Api

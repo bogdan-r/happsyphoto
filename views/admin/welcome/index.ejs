@@ -16,21 +16,57 @@
       </div>
     </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="main-box no-header clearfix">
+        <div class="main-box-body clearfix">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Изображение</th>
+              <th>Название файла</th>
+              <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(favoriteAttachment, function(item){%>
+            <tr>
+              <td width="250"><img src="<%= item.attachment.imgUrl %>" width="250" alt=""/></td>
+              <td><%= item.attachment.file%></td>
+              <td width="100">
+                <a href="/admin/favorite_attachment/<%= item.id%>" class="table-link danger js-favorite-page-delete">
+                  <span class="fa-stack">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </td>
+            </tr>
+
+            <%})%>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
-<div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title">Избранные фото</h4>
-      </div>
-      <div class="modal-body">
-        <form id="favoriteAttachmentList" class="favorite-list"></form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary js-save-favorite-attachment">Сохранить</button>
+  <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Избранные фото</h4>
+        </div>
+        <div class="modal-body">
+          <form id="favoriteAttachmentList" class="favorite-list"></form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary js-save-favorite-attachment">Сохранить</button>
+        </div>
       </div>
     </div>
   </div>

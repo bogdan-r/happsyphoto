@@ -50,18 +50,15 @@ Author URL: http://themeforest.net/user/codesymbol/
         font-size: 12px;
         line-height: 25px;
         overflow: hidden;
-        letter-spacing: 2.3px;
-        overflow: hidden;
         background-color: #ffffff;
-        font-family: effra, arial;
+        font-family: arial;
     }
     p {
         color: inherit;
         font-size: 12px;
         line-height: 25px;
         margin-bottom: 20px;
-        font-family: effra, arial;
-        letter-spacing: 2.3px;
+        font-family: arial;
         font-weight: normal;
         -webkit-font-smoothing: antialiased;
     }
@@ -71,10 +68,9 @@ Author URL: http://themeforest.net/user/codesymbol/
     h1, h2, h3, h4, h5, h6 {
         color: #000000;
         position: relative;
-        font-family: effra;
+        font-family: arial;
         font-weight: normal;
         margin-bottom: 20px;
-        letter-spacing: 4px;
     }
     h1 {
         font-size: 30px;
@@ -254,7 +250,7 @@ Author URL: http://themeforest.net/user/codesymbol/
         .queryloader__overlay:before {
             position: absolute;
             content: "LOADING";
-            font-family: effra, arial;
+            font-family: arial;
             font-size: 15px;
             color: #000000;
             letter-spacing: 13px;
@@ -491,7 +487,6 @@ Author URL: http://themeforest.net/user/codesymbol/
         font-size: 18px;
         font-style: italic;
         line-height: 30px;
-        letter-spacing: 3px;
         text-align: center;
         position: relative;
     }
@@ -573,7 +568,7 @@ Author URL: http://themeforest.net/user/codesymbol/
         padding: 22px 15px;
         color: #7C7C7C;
         font-size: 13px;
-        font-family: effra, arial;
+        font-family: arial;
     }
     .form-input:hover,
     .form-input:focus{
@@ -596,7 +591,7 @@ Author URL: http://themeforest.net/user/codesymbol/
         background-color: #282828;
         color: #ffffff;
         cursor: pointer;
-        font-family: effra, arial;
+        font-family: arial;
     }
     .form-button:hover{
         background-color: #000;
@@ -689,7 +684,7 @@ Author URL: http://themeforest.net/user/codesymbol/
             padding: 0px 15px;
         }
         header .logo-container p {
-            font-family: effra;
+            font-family: arial;
             margin: 0;
             padding: 0;
             font-size: 12px;
@@ -755,7 +750,7 @@ Author URL: http://themeforest.net/user/codesymbol/
             line-height: 60px;
             display: inline-block;
             color: #7C7C7C;
-            letter-spacing: 2.3px;
+
             font-size: 10px;
         }
         header nav a.active, header nav li:hover > a, header nav li:hover > a .arrow-right {
@@ -796,7 +791,7 @@ Author URL: http://themeforest.net/user/codesymbol/
             line-height: 18px;
             padding: 15px 22px;
             font-size: 10px;
-            letter-spacing: 2.3px;
+
             background-color: rgba(255,255,255,0.8);
         }
         header nav .mCSB_container > ul > li > a {
@@ -805,7 +800,7 @@ Author URL: http://themeforest.net/user/codesymbol/
             line-height: 60px;
             display: inline-block;
             color: #7C7C7C;
-            letter-spacing: 2.3px;
+
             font-size: 10px;
         }
         header nav .mCSB_container > ul ul li a {
@@ -814,7 +809,7 @@ Author URL: http://themeforest.net/user/codesymbol/
             line-height: 18px;
             padding: 15px 22px;
             font-size: 10px;
-            letter-spacing: 2.3px;
+
             background-color: rgba(255,255,255,0.8);
         }
 
@@ -3509,7 +3504,7 @@ Author URL: http://themeforest.net/user/codesymbol/
             padding: 22px 15px;
             color: #7C7C7C;
             font-size: 13px;
-            font-family: effra, arial;
+            font-family: arial;
         }
         .blog-single.right-sidebar form input[type=text], .blog-single.right-sidebar form input[type=email],
         .blog-single.left-sidebar form input[type=text], .blog-single.left-sidebar form input[type=email] {
@@ -3531,7 +3526,7 @@ Author URL: http://themeforest.net/user/codesymbol/
             font-size: 13px;
             color: #7C7C7C;
             height: 165px;
-            font-family: effra, arial;
+            font-family: arial;
         }
         .blog-single form textarea:hover, .blog-single form input:hover, 
         .blog-single form textarea:focus, .blog-single form input:focus {
@@ -3550,7 +3545,7 @@ Author URL: http://themeforest.net/user/codesymbol/
             background-color: #282828;
             color: #ffffff;
             cursor: pointer;
-            font-family: effra, arial;
+            font-family: arial;
         }
         .blog-single form input[type=button]:hover {
             border: 1px solid #000000;
@@ -3777,12 +3772,12 @@ Author URL: http://themeforest.net/user/codesymbol/
             margin: 0px;
             color: #000000;
             font-size: 12px;
-            letter-spacing: 4px;
+            letter-spacing: 1px;
         }
         .min-style .info-box .info a {
             color: #000000;
             font-size: 12px;
-            letter-spacing: 4px;
+            letter-spacing: 1px;
         }
         .min-style .info-box .info a:hover {
             -webkit-animation: logo_animate 0.8s 1; /* Safari 4+ */
@@ -4053,7 +4048,7 @@ Author URL: http://themeforest.net/user/codesymbol/
                 padding: 22px 15px;
                 color: #7C7C7C;
                 font-size: 13px;
-                font-family: effra, arial;
+                font-family: arial;
             }
             .contact-1 form input:nth-child(3) {
                 margin-right: 0px;
@@ -4067,14 +4062,15 @@ Author URL: http://themeforest.net/user/codesymbol/
                 font-size: 13px;
                 color: #7C7C7C;
                 height: 165px;
-                font-family: effra, arial;
+                font-family: arial;
             }
             .contact-1 form textarea:hover, .contact-1 form input:hover, 
             .contact-1 form textarea:focus, .contact-1 form input:focus {
                 color: #000000;
                 border: 1px solid #000000!important;
             }
-            .contact-1 form input[type=button] {
+            .contact-1 form input[type=button],
+            .contact-1 form input[type=submit] {
                 font-size: 11px;
                 display: inline-block;
                 text-align: center;
@@ -4085,9 +4081,10 @@ Author URL: http://themeforest.net/user/codesymbol/
                 background-color: #282828;
                 color: #ffffff;
                 cursor: pointer;
-                font-family: effra, arial;
+                font-family: arial;
             }
-            .contact-1 form input[type=button]:hover {
+            .contact-1 form input[type=button]:hover,
+            .contact-1 form input[type=submit]:hover {
                 border: 1px solid #000000;
                 background-color: #000000;
             }
@@ -4162,7 +4159,7 @@ Author URL: http://themeforest.net/user/codesymbol/
                 padding: 15px 15px;
                 color: #7C7C7C;
                 font-size: 13px;
-                font-family: effra, arial;
+                font-family: arial;
             }
             .contact-2 form input:nth-child(3) {
                 margin-right: 0px;
@@ -4176,7 +4173,7 @@ Author URL: http://themeforest.net/user/codesymbol/
                 font-size: 13px;
                 color: #7C7C7C;
                 height: 165px;
-                font-family: effra, arial;
+                font-family: arial;
             }
             .contact-2 form textarea:hover, .contact-2 form input:hover, 
             .contact-2 form textarea:focus, .contact-2 form input:focus {
@@ -4194,7 +4191,7 @@ Author URL: http://themeforest.net/user/codesymbol/
                 background-color: #282828;
                 color: #ffffff;
                 cursor: pointer;
-                font-family: effra, arial;
+                font-family: arial;
             }
             .contact-2 form input[type=button]:hover {
                 border: 1px solid #000000;
