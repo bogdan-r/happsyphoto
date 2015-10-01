@@ -44,7 +44,7 @@ class GalleryNew extends Backbone.View
     else
       @dropzoneUploadRequest()
 
-  rollbackGalleryCreate: ()->
+  rollbackGalleryCreate: ()=>
     @_loadProcess()
     data = {
       ids : @uploadedFiles.attachment
@@ -61,7 +61,7 @@ class GalleryNew extends Backbone.View
         location.href = '/admin/gallery/'
     })
 
-  dropzoneUploadRequest: ()->
+  dropzoneUploadRequest: ()=>
     @_loadProcess()
     data = "#{$.param(@uploadedFiles)}&#{$('.js-gallery-new-form').serialize()}"
     $.ajax({
@@ -94,9 +94,9 @@ class GalleryNew extends Backbone.View
     }).render()
 
   _loadProcess: ()->
-    $('.js-create-new-gallery-button').attr('disable', 'disable')
+    $('.js-create-new-gallery-button').attr('disabled', 'disabled')
     $('.js-load-process').show();
 
   _loadProcessFinish: ()->
-    $('.js-create-new-gallery-button').removeAttr('disable')
+    $('.js-create-new-gallery-button').removeAttr('disabled')
     $('.js-load-process').hide();
