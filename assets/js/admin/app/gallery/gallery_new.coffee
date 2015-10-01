@@ -29,7 +29,7 @@ class GalleryNew extends Backbone.View
 
   submitFormHandler: (e)->
     e.preventDefault()
-
+    @_loadProcess()
     @dropzone.enqueueFiles(@dropzone.getFilesWithStatus(Dropzone.ADDED));
 
   continueCreateGalleryHandler: (e)->
@@ -45,7 +45,6 @@ class GalleryNew extends Backbone.View
       @dropzoneUploadRequest()
 
   rollbackGalleryCreate: ()=>
-    @_loadProcess()
     data = {
       ids : @uploadedFiles.attachment
     }
@@ -62,7 +61,6 @@ class GalleryNew extends Backbone.View
     })
 
   dropzoneUploadRequest: ()=>
-    @_loadProcess()
     data = "#{$.param(@uploadedFiles)}&#{$('.js-gallery-new-form').serialize()}"
     $.ajax({
       url: '/admin/gallery'
