@@ -37,15 +37,15 @@
                 <%})%>
               </select>
             </div>
-            <button type="submit" class="btn btn-success">Создать</button>
+            <button type="submit" class="btn btn-success js-create-new-gallery-button">Создать</button>
+            <i class="fa fa-spinner fa-spin js-load-process" style="display: none;"></i>
           </form>
         </div>
       </div>
     </div>
   </div>
 
-  <a href="#errorFilesModal" data-toggle="modal">Open modal</a>
-  <div class="modal fade" id="errorFilesModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal fade" id="errorFilesModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="errorFilesModal" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

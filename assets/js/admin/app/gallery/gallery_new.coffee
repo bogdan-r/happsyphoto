@@ -45,6 +45,7 @@ class GalleryNew extends Backbone.View
       @dropzoneUploadRequest()
 
   rollbackGalleryCreate: ()->
+    @_loadProcess()
     data = {
       ids : @uploadedFiles.attachment
     }
@@ -55,11 +56,13 @@ class GalleryNew extends Backbone.View
       headers: {
         'X-CSRF-Token': $('meta[name="token"]').attr('content')
       }
-      success: ()->
+      success: ()=>
+        @_loadProcessFinish()
         location.href = '/admin/gallery/'
     })
 
   dropzoneUploadRequest: ()->
+    @_loadProcess()
     data = "#{$.param(@uploadedFiles)}&#{$('.js-gallery-new-form').serialize()}"
     $.ajax({
       url: '/admin/gallery'
@@ -68,9 +71,9 @@ class GalleryNew extends Backbone.View
       headers: {
         'X-CSRF-Token': $('meta[name="token"]').attr('content')
       }
-      success: ()->
+      success: ()=>
+        @_loadProcessFinish()
         location.href = '/admin/gallery/'
-
     })
 
   dropzoneSuccess: (file, responseText)->
@@ -90,3 +93,10 @@ class GalleryNew extends Backbone.View
       errorsFiles : @nonLoadedFiles
     }).render()
 
+  _loadProcess: ()->
+    $('.js-create-new-gallery-button').attr('disable', 'disable')
+    $('.js-load-process').show();
+
+  _loadProcessFinish: ()->
+    $('.js-create-new-gallery-button').removeAttr('disable')
+    $('.js-load-process').hide();
