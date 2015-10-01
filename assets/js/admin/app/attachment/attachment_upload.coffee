@@ -11,7 +11,7 @@ class AttachmentUpload extends Backbone.View
         url: '/api/admin/upload_attacment'
         thumbnailWidth: 100
         thumbnailheight: 100
-        parallelUploads: 20
+        parallelUploads: 10
         autoQueue: false
         maxFilesize: 5
         clickable: '.js-add-dropzone-file'

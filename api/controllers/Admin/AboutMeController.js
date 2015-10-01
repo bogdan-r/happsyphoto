@@ -33,7 +33,6 @@ module.exports = {
       var aboutMeInstance = aboutMe[0];
       if (err) {return res.badRequest()}
       var attachmentUrl = AboutMeImage.getAttachmentsUrl().attachmentsUrlAsset + aboutMeInstance.id + '/';
-      console.log(attachmentUrl)
       fileInfo.upload({
         dirname: attachmentUrl,
         saveAs: function(__newFileStream,cb){
@@ -41,12 +40,10 @@ module.exports = {
         }
       }, function (err, uploadedFiles) {
         if (err) {return res.badRequest()}
-        console.log(uploadedFiles)
         if(uploadedFiles.length){
           aboutMeInstance.isLoadAvatar = true;
           aboutMeInstance.save(function(err){
             if (err) {return res.badRequest()}
-            console.log('dsdfsdfsdfdsfsdfsdfsdfsdfsd')
             return res.redirect('..')
           });
         }

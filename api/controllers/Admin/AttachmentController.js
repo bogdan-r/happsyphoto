@@ -5,6 +5,8 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var fs = require('fs');
+
 module.exports = {
   index: function (req, res) {
     PaginationService.paginate(Attachment, req).then(function(pagResult){
@@ -33,7 +35,14 @@ module.exports = {
   },
 
   create: function (req, res) {
-    var fileInfo = req.file('file')._files[0].stream;
+    var fileAttachment = req.file('file');
+
+    if(_.isUndefined(fileAttachment._files[0])){
+      fileAttachment.upload(()=>{})
+      return res.serverError()
+    }
+
+    var fileInfo = fileAttachment._files[0].stream;
     var params = {
       title: req.param('title'),
       file: fileInfo.filename,
@@ -44,7 +53,7 @@ module.exports = {
     Attachment.create(params).exec(function (err, attachment) {
       if (err) {return res.badRequest()}
       var attachmentUrl = AttachmentImages.getAttachmentsUrl().attachmentsUrlAsset + attachment.id + '/';
-      req.file('file').upload({
+      fileAttachment.upload({
         dirname: attachmentUrl,
         saveAs: function(__newFileStream,cb){
           cb(null, __newFileStream.filename)
@@ -68,7 +77,7 @@ module.exports = {
     })
   },
 
-  destroy: function (req, res) {
+  state_to_delete: function (req, res) {
     var params = {
       id: req.param('id')
     }
@@ -85,6 +94,24 @@ module.exports = {
     Attachment.update(params, {published_state: 'active'}).exec(function(err){
       if(err){res.badRequest()}
       return res.json({ok: true})
+    })
+  },
+
+  destroy: function(req, res){
+    var ids = req.param('ids') || [req.param('id')]
+
+    Attachment.destroy({id: ids}).exec(function(err){
+      console.log(err);
+      if (err) {return res.badRequest()}
+
+      //NOTE Нам не важно, удалились ли все фотографии
+      AttachmentDeletePhoto(ids).then(()=>{
+        console.info(`all file attachments were deleted. Ids: ${ids}`);
+      }).catch((err)=>{
+        console.info(`file attachments is't deleted. Error: ${err}`);
+      })
+
+      return res.ok()
     })
   }
 };

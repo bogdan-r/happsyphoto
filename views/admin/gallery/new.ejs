@@ -43,4 +43,29 @@
       </div>
     </div>
   </div>
+
+  <a href="#errorFilesModal" data-toggle="modal">Open modal</a>
+  <div class="modal fade" id="errorFilesModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Что то пошло не так</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            К сожалению не все фотографии смогли загрузиться.
+          </p>
+          <p>
+            Вы можете продолжить создание галлереи без этих фотографий и загрузить их позже. Или отменить создание галереи.
+          </p>
+          <p>Список незагруженных фотографий:</p>
+          <div class="js-gallery-new-error-file-list"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary js-gallery-new-error-continue">Создать галерею</button>
+          <button type="button" class="btn btn-danger js-gallery-new-error-cancel">Все пропало, отменяй</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

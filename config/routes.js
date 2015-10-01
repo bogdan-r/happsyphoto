@@ -154,6 +154,20 @@ module.exports.routes = {
   },
   '/admin/attachment/destroy': {
     controller: 'Admin/AttachmentController',
+    action: 'state_to_delete',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'delete /admin/attachment/destroyMultiply': {
+    controller: 'Admin/AttachmentController',
+    action: 'destroy',
+    locals: {
+      layout: 'layouts/admin/layout'
+    }
+  },
+  'delete /admin/attachment/:id': {
+    controller: 'Admin/AttachmentController',
     action: 'destroy',
     locals: {
       layout: 'layouts/admin/layout'
