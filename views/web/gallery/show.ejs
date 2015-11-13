@@ -1,19 +1,16 @@
 <div class="wrapper">
-  <div class="gallery-h normal">
-    <div class="nav">
-      <a href="#" class="prev icon4-leftarrow23"></a>
-      <a href="#" class="next icon4-chevrons"></a>
-    </div>
-    <div class="gallery clearfix">
-      <div class="container">
-        <% _.each(galleryAttachment, function(item){%>
-        <div class="img">
-          <a href="<%= item.attachment.imgUrl%>" data-rel="gallery">
-            <img src="<%= item.attachment.imgUrl%>" alt="<%= item.attachment.title%>">
-          </a>
-        </div>
-        <%})%>
+  <a href="#" class="common-gallery-nav common-gallery_prev icon4-leftarrow23 js-swiper-prev"></a>
+  <a href="#" class="common-gallery-nav common-gallery_next icon4-chevrons js-swiper-next"></a>
+  <div class="common-gallery swiper-container js-swiper">
+    <div class="common-gallery__wrapper swiper-wrapper">
+      <% _.each(galleryAttachment, function(item){%>
+      <div class="common-gallery__item swiper-slide">
+        <img class="common-gallery__img swiper-lazy" data-src="<%= item.attachment.imgUrl%>" alt="<%= item.attachment.title%>">
+        <div class="swiper-lazy-preloader"></div>
       </div>
+      <%})%>
     </div>
   </div>
+
 </div>
+

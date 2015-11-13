@@ -1,0 +1,7 @@
+{
+  "uid": "app",
+  "append": true,
+  "watch": false,
+  "script": "app.js",
+  "args": ["--port=1337", "--prod"]
+}

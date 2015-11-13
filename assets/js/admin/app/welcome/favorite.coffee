@@ -4,6 +4,7 @@ class FavoriteView extends Backbone.View
     $('.js-save-favorite-attachment').on('click', @saveFavoriteAttachmentHandler)
 
   saveFavoriteAttachmentHandler: (e)=>
+    console.log @$el.serialize()
     $.ajax({
       url: "/api/admin/favorite_attachment"
       method: "post"

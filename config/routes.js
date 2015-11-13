@@ -32,7 +32,13 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': 'Web/WelcomeController',
+  '/': {
+    controller: 'Web/WelcomeController',
+    action: 'index',
+    locals: {
+      hasPadding: true
+    }
+  },
 
   /***************************************************************************
   *                                                                          *
