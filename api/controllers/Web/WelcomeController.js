@@ -7,11 +7,11 @@
 
 module.exports = {
 	index: function(req, res){
-    FavoriteAttachment.find().populateAll().exec(function(err, favoriteAttachment){
-      console.log(err)
+    FavoriteAttachment.find().populate('attachment').exec(function(err, favoriteAttachment){
       if(err){return res.badRequest()}
+      var favoriteAttachmentByActive = AttachmentService.filterByActive(favoriteAttachment, 'attachment');
       return res.view({
-        favoriteAttachment: execToJSON(favoriteAttachment)
+        favoriteAttachment: execToJSON(favoriteAttachmentByActive)
       })
     })
   }

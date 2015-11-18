@@ -26,6 +26,9 @@ module.exports = {
       enum: ['active', 'deleted'],
       defaultsTo: 'active'
     },
+    isActive: function(){
+      return this.published_state == 'active'
+    },
     toJSON : function(){
       var obj = this.toObject();
       obj.imgUrl = AttachmentImages.getAttachmentUrlPublic(this.id, this.file);
@@ -36,15 +39,10 @@ module.exports = {
 
   findByActiveState : function(options){
     var model = this;
-    var extParams = null;
-    if(_.isObject(options) && !_.isEmpty(options)){
-      extParams = _.extend(options, {
-        published_state : 'active'
-      });
-    }else{
-      extParams = {published_state : 'active'};
-    }
-    return model.find(extParams)
+    var mixinParams = MixinReqParam({
+      published_state : 'active'
+    }, options);
+    return model.find(mixinParams)
   }
 };
 

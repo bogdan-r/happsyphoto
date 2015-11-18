@@ -6,10 +6,12 @@
  */
 
 module.exports = {
-  index: function(req, res){
-    PaginationService.paginate(Gallery, req).then(function(pagResult){
-      Gallery.find().populateAll().sort('createdAt DESC').paginate(pagResult).exec(function(err, galleries){
-        if (err) {return res.badRequest()}
+  index: function (req, res) {
+    PaginationService.paginate(Gallery, req).then(function (pagResult) {
+      Gallery.find().populateAll().sort('createdAt DESC').paginate(pagResult).exec(function (err, galleries) {
+        if (err) {
+          return res.badRequest()
+        }
         return res.view({
           galleries: execToJSON(galleries),
           pagResult: pagResult
@@ -18,58 +20,68 @@ module.exports = {
     })
   },
 
-  new: function(req, res){
-    Category.find().exec(function(err, categories){
-      if (err) {return res.badRequest()}
+  new: function (req, res) {
+    Category.find().exec(function (err, categories) {
+      if (err) {
+        return res.badRequest()
+      }
       res.view({
         categories: categories
       })
     })
-
   },
 
-  edit: function(req, res){
-    Gallery.findOne(req.param('id')).populateAll().then(function(gallery){
+  edit: function (req, res) {
+    Gallery.findOne(req.param('id')).populateAll().then(function (gallery) {
 
       var galleryAttachment = GalleryAttachment.find({
         gallery: _.pluck(gallery.attachment, 'gallery')
-      }).populate('attachment').sort('order ASC')
+      }).populate('attachment', {published_state: 'active'}).sort('order ASC')
 
       return [gallery, Category.find(), galleryAttachment]
-    }).spread(function(gallery, categories, galleryAttachment){
-        res.view({
-          galleryAttachment: execToJSON(galleryAttachment),
-          categories: categories,
-          gallery: gallery.toJSON()
-        })
-    }).catch(function(err){
-      if (err) {return res.badRequest()}
+    }).spread(function (gallery, categories, galleryAttachment) {
+      var activeGalleryAttachment = AttachmentService.filterByActive(galleryAttachment, 'attachment');
+      res.view({
+        galleryAttachment: execToJSON(activeGalleryAttachment),
+        categories: categories,
+        gallery: gallery.toJSON()
+      })
+    }).catch(function (err) {
+      if (err) {
+        return res.badRequest()
+      }
     })
   },
 
-  create: function(req, res){
+  create: function (req, res) {
     var params = OnlyParams(req, ['attachment', 'coverImg', 'name', 'category', 'order'])
-    if(params.coverImg == ''){
+    if (params.coverImg == '') {
       params.coverImg = params.attachment[0]
     }
-    Gallery.create(params).then(function(gallery){
-      if(!_.isArray(params.category)){params.category = [params.category]}
+    Gallery.create(params).then(function (gallery) {
+      if (!_.isArray(params.category)) {
+        params.category = [params.category]
+      }
       var galleryAttachmentParam = []
-      _.each(params.attachment, function(item, i){
+      _.each(params.attachment, function (item, i) {
         galleryAttachmentParam.push({gallery: gallery.id, attachment: item, order: parseInt(params.order[i], 10)})
       });
-      _.each(params.category, function(item){gallery.categories.add(item)})
+      _.each(params.category, function (item) {
+        gallery.categories.add(item)
+      })
       gallery.save();
       return GalleryAttachment.create(galleryAttachmentParam)
-    }).then(function(galleryAttachment){
-        return res.json({ok: true})
-    }).catch(function(err){
-        console.log(err)
-      if (err) {return res.badRequest()}
+    }).then(function (galleryAttachment) {
+      return res.json({ok: true})
+    }).catch(function (err) {
+      console.log(err)
+      if (err) {
+        return res.badRequest()
+      }
     })
   },
 
-  update: function(req, res){
+  update: function (req, res) {
     //TODO отрефакторить обновление
     var galleryAttachmentParam = [];
     var updateGalleryAttachmentIds = [];
@@ -77,11 +89,13 @@ module.exports = {
     var updateGalleryAttachmentParam = [];
     var updateAttachmentParam = [];
     var params = OnlyParams(req, ['id', 'name', 'category', 'coverImg']);
-    if(!_.isArray(params.category)){params.category = [params.category]}
+    if (!_.isArray(params.category)) {
+      params.category = [params.category]
+    }
     var attachments = req.param('attachments');
     var attachmentsNew = req.param('attachments_new');
 
-    _.each(attachments, function(item){
+    _.each(attachments, function (item) {
       updateGalleryAttachmentIds.push({id: item.galleryAttachId})
       updateAttachmentIds.push({id: item.id})
       updateGalleryAttachmentParam.push({order: item.order})
@@ -89,9 +103,9 @@ module.exports = {
     });
 
 
-    Gallery.update(params.id, params).then(function(gallery){
+    Gallery.update(params.id, params).then(function (gallery) {
       gallery = gallery[0];
-      _.each(attachmentsNew, function(item){
+      _.each(attachmentsNew, function (item) {
         galleryAttachmentParam.push({gallery: gallery.id, attachment: item.id, order: parseInt(item.order, 10)})
       });
 
@@ -102,49 +116,55 @@ module.exports = {
         galleryAttachmentUpdate,
         attachmentUpdate,
         Gallery.findOne(params.id).populateAll()]
-    }).spread(function(galleryAttachment, galleryAttachmentUpdate, attachmentUpdate, galleryPopulate){
-        var exisistCategories = _.map(galleryPopulate.categories, function(exisistCategory){
-          return exisistCategory.id.toString()
-        })
-        var unionCategories = _.union(exisistCategories, params.category)
+    }).spread(function (galleryAttachment, galleryAttachmentUpdate, attachmentUpdate, galleryPopulate) {
+      var exisistCategories = _.map(galleryPopulate.categories, function (exisistCategory) {
+        return exisistCategory.id.toString()
+      })
+      var unionCategories = _.union(exisistCategories, params.category)
 
-        _.each(unionCategories, function(unionCategory){
-          if (_.indexOf(params.category, unionCategory) < 0){
-            galleryPopulate.categories.remove(unionCategory)
-          }else if(_.indexOf(exisistCategories, unionCategory) < 0){
-            galleryPopulate.categories.add(unionCategory)
-          }
-        })
-        _.each(attachments, function(attachment){
-          var galleryAttachmentInstance = _.find(galleryAttachmentUpdate, {id: parseInt(attachment.galleryAttachId)});
-          var attachmentInstance = _.find(attachmentUpdate, {id: parseInt(attachment.id)});
+      _.each(unionCategories, function (unionCategory) {
+        if (_.indexOf(params.category, unionCategory) < 0) {
+          galleryPopulate.categories.remove(unionCategory)
+        } else if (_.indexOf(exisistCategories, unionCategory) < 0) {
+          galleryPopulate.categories.add(unionCategory)
+        }
+      })
+      _.each(attachments, function (attachment) {
+        var galleryAttachmentInstance = _.find(galleryAttachmentUpdate, {id: parseInt(attachment.galleryAttachId)});
+        var attachmentInstance = _.find(attachmentUpdate, {id: parseInt(attachment.id)});
 
-          galleryAttachmentInstance.order = parseInt(attachment.order);
-          attachmentInstance.title = attachment.title;
-          galleryAttachmentInstance.save()
-          attachmentInstance.save()
-        });
+        galleryAttachmentInstance.order = parseInt(attachment.order);
+        attachmentInstance.title = attachment.title;
+        galleryAttachmentInstance.save()
+        attachmentInstance.save()
+      });
 
 
-        galleryPopulate.save()
+      galleryPopulate.save()
       return res.json({ok: true})
-    }).catch(function(err){
+    }).catch(function (err) {
       console.log(err)
-      if (err) {return res.badRequest()}
+      if (err) {
+        return res.badRequest()
+      }
     })
   },
 
-  destroy: function(req, res){
-    Gallery.destroy({id: req.param('id')}).exec(function(err){
-      if (err) {return res.badRequest()}
+  destroy: function (req, res) {
+    Gallery.destroy({id: req.param('id')}).exec(function (err) {
+      if (err) {
+        return res.badRequest()
+      }
       return res.ok()
     })
   },
 
-  deleteAttach: function(req, res){
-    GalleryAttachment.destroy({id: req.param('gallery_id')}).exec(function(err){
+  deleteAttach: function (req, res) {
+    GalleryAttachment.destroy({id: req.param('gallery_id')}).exec(function (err) {
       console.log(err);
-      if (err) {return res.badRequest()}
+      if (err) {
+        return res.badRequest()
+      }
       return res.json({ok: true})
     })
   }

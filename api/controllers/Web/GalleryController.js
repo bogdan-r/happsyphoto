@@ -10,9 +10,9 @@ module.exports = {
 
       return [gallery, Category.find(), galleryAttachment]
     }).spread(function(gallery, categories, galleryAttachment){
-        console.log(galleryAttachment)
+        var activeGalleryAttachment = AttachmentService.filterByActive(galleryAttachment, 'attachment');
         res.view({
-          galleryAttachment: execToJSON(galleryAttachment),
+          galleryAttachment: execToJSON(activeGalleryAttachment),
           categories: categories,
           gallery: gallery.toJSON()
         })
