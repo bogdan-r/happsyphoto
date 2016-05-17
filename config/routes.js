@@ -102,6 +102,12 @@ module.exports.routes = {
     controller: 'Api/Web/FeedbackController',
     action: 'create'
   },
+  
+  //
+  'get /services': {
+    controller: 'Web/ServiceController',
+    action: 'show'
+  },
 
 
 
