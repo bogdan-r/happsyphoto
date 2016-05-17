@@ -87,17 +87,17 @@
   position: relative;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   overflow: auto
 }
 .package-item {
-  flex-basis: calc(~"25% - 20px");
-  padding: 0 15px;
+  flex-basis: 100%;
+  padding: 0;
+  margin-bottom: 50px;
 }
 .package-item__header {
   text-align: center;
   margin-bottom: 15px;
-  // padding-bottom: 15px;
-  // border-bottom: 1px solid #7C7C7C;
 }
 .package-item__title {
   font-size: 20px;
@@ -133,3 +133,20 @@
 
   }
 }
+
+
+@media only screen and (min-width: 512px) {}
+@media only screen and (min-width: 768px) {}
+@media only screen and (min-width: 1024px) {
+  .package-item {
+    flex-basis: calc(~"50% - 10px");
+    padding: 0 10px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .package-item {
+    flex-basis: calc(~"25% - 10px");
+    margin-bottom: 0;
+  }
+}
+@media only screen and (min-width: 1440px) {}
